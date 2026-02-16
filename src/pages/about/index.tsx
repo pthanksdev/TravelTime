@@ -1,4 +1,4 @@
-﻿import { CtaSection, HeroSection, MissionSection, OperatingModelSection, PrinciplesSection, TeamSection, WorkSection } from "./sections";
+﻿import { CtaSection, HeroSection, MissionSection, OperatingModelSection, PrinciplesSection, TeamSection, WorkSection } from "@/components/pages/about/sections";
 
 export function AboutPage() {
   return (
@@ -13,3 +13,4 @@ export function AboutPage() {
     </div>
   );
 }
+

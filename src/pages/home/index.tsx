@@ -7,7 +7,7 @@
   PlannerSection,
   ProcessSection,
   ToursTestimonialsSection
-} from "./sections";
+} from "@/components/pages/home/sections";
 
 export function HomePage() {
   return (
@@ -23,3 +23,4 @@ export function HomePage() {
     </div>
   );
 }
+
