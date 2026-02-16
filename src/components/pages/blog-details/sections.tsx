@@ -1,5 +1,3 @@
-﻿import { PageHero } from "@/components/page/PageHero";
-import { Card, CardContent } from "@/components/ui/card";
-export function HeroSection(){return <PageHero eyebrow="Blog Details" title="How to reduce itinerary friction on long-haul trips." description="A practical framework for balancing movement, rest, and experience density across a multi-day route." imageSrc="/assets/img/blog/blog-hero-2.webp" imageAlt="Detailed blog hero" />;}
-export function CoverSection(){return <img src="/assets/img/blog/blog-post-6.webp" alt="Itinerary planning" className="h-56 w-full rounded-2xl border object-cover sm:h-72" loading="lazy" />;}
-export function ArticleSection(){return <Card><CardContent className="space-y-4 pt-6 text-[15px] leading-7 text-muted-foreground"><p>Most itinerary failures come from compression. Travelers optimize for destinations visited, but the real constraint is transition cost. Airports, check-ins, transfers, and recovery time compound quickly.</p><p>A better model is to design around anchors: one high-intensity day followed by one medium day, with transfer windows buffered by low-risk activities. This preserves energy and improves memory quality for the whole trip.</p><p>TravelTime uses this pattern in all route templates. We score each day for physical load, transition complexity, and margin for delays. The result is a plan that feels full, not chaotic.</p></CardContent></Card>;}
+export { HeroSection } from "./components/HeroSection";
+export { CoverSection } from "./components/CoverSection";
+export { ArticleSection } from "./components/ArticleSection";
