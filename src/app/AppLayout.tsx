@@ -226,6 +226,7 @@ export function AppLayout() {
         >
           <Sparkles className="size-4" /> Quick Planner
         </Button>
+        
 
         {showTop ? (
           <Button
