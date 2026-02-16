@@ -1,5 +1,6 @@
-﻿import { Clock3, PlaneTakeoff, ShieldAlert } from "lucide-react";
+﻿import { Clock3, PlaneTakeoff, ShieldAlert, ThermometerSun, Waves } from "lucide-react";
 import { PageHero } from "@/components/page/PageHero";
+import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { destinations } from "@/features/content/site-data";
 
@@ -23,6 +24,13 @@ export function DestinationDetailsPage() {
         imageAlt="Detailed destination planning"
       />
 
+      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <Card><CardContent className="pt-6 text-sm"><Clock3 className="mb-2 size-5 text-primary" />Average day pace score</CardContent></Card>
+        <Card><CardContent className="pt-6 text-sm"><PlaneTakeoff className="mb-2 size-5 text-primary" />Transfer complexity index</CardContent></Card>
+        <Card><CardContent className="pt-6 text-sm"><ThermometerSun className="mb-2 size-5 text-primary" />Seasonal comfort rating</CardContent></Card>
+        <Card><CardContent className="pt-6 text-sm"><ShieldAlert className="mb-2 size-5 text-primary" />Operational risk posture</CardContent></Card>
+      </section>
+
       <section className="grid gap-4 lg:grid-cols-2">
         {destinations.map((destination, idx) => (
           <Card key={destination.city} className="overflow-hidden">
@@ -32,6 +40,10 @@ export function DestinationDetailsPage() {
             </CardHeader>
             <CardContent className="space-y-3 text-sm text-muted-foreground">
               <p>{destination.focus}</p>
+              <div className="flex flex-wrap gap-2">
+                <Badge variant="outline"><Waves className="mr-1 inline size-3" />Comfort season</Badge>
+                <Badge variant="outline">Route fit: {idx % 2 === 0 ? "Leisure" : "Explorer"}</Badge>
+              </div>
               <div className="grid gap-2 sm:grid-cols-3">
                 <div className="rounded-md border p-2"><Clock3 className="mb-1 size-4 text-primary" /> Pace: {idx % 2 === 0 ? "Balanced" : "Fast"}</div>
                 <div className="rounded-md border p-2"><PlaneTakeoff className="mb-1 size-4 text-primary" /> Access: {idx % 2 === 0 ? "Direct" : "1 transfer"}</div>
@@ -44,4 +56,3 @@ export function DestinationDetailsPage() {
     </div>
   );
 }
-
