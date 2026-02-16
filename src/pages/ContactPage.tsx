@@ -1,5 +1,6 @@
-﻿import { Mail, MapPin, Phone } from "lucide-react";
+﻿import { Clock3, Mail, MapPin, Phone, ShieldCheck } from "lucide-react";
 import { PageHero } from "@/components/page/PageHero";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -22,6 +23,15 @@ export function ContactPage() {
         <Card><CardContent className="pt-6 text-sm"><MapPin className="mb-1 size-5 text-primary" />Los Angeles, CA</CardContent></Card>
       </section>
 
+      <section className="rounded-2xl border bg-card p-4 sm:p-6">
+        <h2 className="mb-3 text-xl font-semibold">Service levels</h2>
+        <div className="grid gap-3 sm:grid-cols-3 text-sm">
+          <div className="rounded-lg border p-3"><Clock3 className="mb-2 size-4 text-primary" />General response: within 18 minutes</div>
+          <div className="rounded-lg border p-3"><Badge>Priority</Badge><p className="mt-2">In-trip support escalation available</p></div>
+          <div className="rounded-lg border p-3"><ShieldCheck className="mb-2 size-4 text-primary" />Secure handling of traveler data</div>
+        </div>
+      </section>
+
       <section className="grid gap-4 lg:grid-cols-2">
         <img src="/assets/img/travel/misc-3.webp" alt="Customer support" className="h-56 w-full rounded-2xl border object-cover sm:h-72 lg:h-full" loading="lazy" />
         <Card>
@@ -38,4 +48,3 @@ export function ContactPage() {
     </div>
   );
 }
-
