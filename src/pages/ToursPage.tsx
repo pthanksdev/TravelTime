@@ -1,5 +1,7 @@
-﻿import { Link } from "react-router-dom";
+﻿import { CheckCircle2, Link2, ShieldCheck, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
 import { PageHero } from "@/components/page/PageHero";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { tours } from "@/features/content/site-data";
@@ -25,6 +27,13 @@ export function ToursPage() {
         actions={<Link to="/tour-details"><Button variant="outline">Compare tour details</Button></Link>}
       />
 
+      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <Card><CardContent className="pt-6 text-sm"><CheckCircle2 className="mb-2 size-5 text-primary" />Verified route templates</CardContent></Card>
+        <Card><CardContent className="pt-6 text-sm"><ShieldCheck className="mb-2 size-5 text-primary" />Service quality checkpoints</CardContent></Card>
+        <Card><CardContent className="pt-6 text-sm"><Sparkles className="mb-2 size-5 text-primary" />Premium experience mix</CardContent></Card>
+        <Card><CardContent className="pt-6 text-sm"><Link2 className="mb-2 size-5 text-primary" />Transparent supplier network</CardContent></Card>
+      </section>
+
       <section className="grid gap-4 md:grid-cols-2">
         {tours.map((tour, index) => (
           <Card key={tour.name} className="overflow-hidden">
@@ -36,6 +45,11 @@ export function ToursPage() {
               <p>Region: {tour.region}</p>
               <p>Duration: {tour.days} days</p>
               <p>From: <span className="font-semibold text-foreground">{tour.price}</span></p>
+              <div className="flex flex-wrap gap-2 pt-1">
+                <Badge variant="outline">Small group</Badge>
+                <Badge variant="outline">Guide included</Badge>
+                <Badge variant="outline">Flexible add-ons</Badge>
+              </div>
             </CardContent>
           </Card>
         ))}
@@ -43,4 +57,3 @@ export function ToursPage() {
     </div>
   );
 }
-

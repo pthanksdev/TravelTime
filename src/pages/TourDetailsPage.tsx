@@ -1,5 +1,6 @@
-﻿import { Bus, CircleCheck, Hotel, Ticket } from "lucide-react";
+﻿import { Bus, CalendarDays, CircleCheck, Hotel, Mountain, Ticket } from "lucide-react";
 import { PageHero } from "@/components/page/PageHero";
+import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { tours } from "@/features/content/site-data";
 
@@ -23,6 +24,16 @@ export function TourDetailsPage() {
         imageAlt="Tour detail"
       />
 
+      <section className="rounded-2xl border bg-card p-4 sm:p-6">
+        <h2 className="mb-3 text-xl font-semibold">Sample itinerary structure</h2>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="rounded-lg border p-3 text-sm"><CalendarDays className="mb-2 size-4 text-primary" />Day 1-2: Arrival + city immersion</div>
+          <div className="rounded-lg border p-3 text-sm"><Bus className="mb-2 size-4 text-primary" />Day 3-4: Regional transfer + activities</div>
+          <div className="rounded-lg border p-3 text-sm"><Mountain className="mb-2 size-4 text-primary" />Day 5-6: Signature experiences</div>
+          <div className="rounded-lg border p-3 text-sm"><CircleCheck className="mb-2 size-4 text-primary" />Day 7+: Buffer + departure</div>
+        </div>
+      </section>
+
       <section className="grid gap-4 lg:grid-cols-2">
         {tours.map((tour, idx) => (
           <Card key={tour.name} className="overflow-hidden">
@@ -35,6 +46,11 @@ export function TourDetailsPage() {
               <div className="rounded-md border p-3"><CircleCheck className="mb-1 size-4 text-primary" />{tour.days} planned days</div>
               <div className="rounded-md border p-3"><Hotel className="mb-1 size-4 text-primary" />{idx % 2 === 0 ? "4-star hotels" : "Boutique mix"}</div>
               <div className="rounded-md border p-3"><Bus className="mb-1 size-4 text-primary" />{idx % 2 === 0 ? "Private transfers" : "Shared + private"}</div>
+              <div className="sm:col-span-2 flex flex-wrap gap-2">
+                <Badge variant="outline">Breakfast included</Badge>
+                <Badge variant="outline">Activity tickets</Badge>
+                <Badge variant="outline">Local support</Badge>
+              </div>
             </CardContent>
           </Card>
         ))}
@@ -42,4 +58,3 @@ export function TourDetailsPage() {
     </div>
   );
 }
-
