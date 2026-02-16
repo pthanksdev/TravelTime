@@ -1,8 +1,22 @@
-﻿import { useEffect, useState } from "react";
+﻿import { useEffect, useMemo, useState } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
-import { Compass, Mail, MapPin, Menu, Phone, Plane, Shield, Ticket, X } from "lucide-react";
+import {
+  ArrowUp,
+  ChevronRight,
+  Compass,
+  Mail,
+  MapPin,
+  Menu,
+  Phone,
+  Plane,
+  Shield,
+  Sparkles,
+  Ticket,
+  X
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 const navItems = [
   { to: "/", label: "Home" },
@@ -14,13 +28,51 @@ const navItems = [
   { to: "/contact", label: "Contact" }
 ];
 
+const routeLabelMap: Record<string, string> = {
+  about: "About",
+  destinations: "Destinations",
+  "destination-details": "Destination Details",
+  tours: "Tours",
+  "tour-details": "Tour Details",
+  booking: "Booking",
+  gallery: "Gallery",
+  blog: "Blog",
+  "blog-details": "Blog Details",
+  testimonials: "Testimonials",
+  faq: "FAQ",
+  contact: "Contact",
+  terms: "Terms",
+  privacy: "Privacy",
+  "starter-page": "Starter Page",
+  "404": "Not Found"
+};
+
 export function AppLayout() {
   const [open, setOpen] = useState(false);
+  const [plannerOpen, setPlannerOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [showTop, setShowTop] = useState(false);
   const location = useLocation();
+
+  const breadcrumbs = useMemo(() => {
+    const segments = location.pathname.split("/").filter(Boolean);
+    const items: { label: string; to: string }[] = [{ label: "Home", to: "/" }];
+
+    let current = "";
+    for (const segment of segments) {
+      current += `/${segment}`;
+      items.push({
+        label: routeLabelMap[segment] ?? segment.replace(/-/g, " "),
+        to: current
+      });
+    }
+
+    return items;
+  }, [location.pathname]);
 
   useEffect(() => {
     setOpen(false);
+    setPlannerOpen(false);
   }, [location.pathname]);
 
   useEffect(() => {
@@ -28,6 +80,7 @@ export function AppLayout() {
       const total = document.documentElement.scrollHeight - window.innerHeight;
       const progress = total > 0 ? (window.scrollY / total) * 100 : 0;
       setScrollProgress(Math.min(100, Math.max(0, progress)));
+      setShowTop(window.scrollY > 380);
     };
 
     onScroll();
@@ -88,6 +141,26 @@ export function AppLayout() {
       </header>
 
       <main className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 sm:py-8 md:py-10">
+        {breadcrumbs.length > 1 ? (
+          <nav aria-label="Breadcrumb" className="mb-6 overflow-x-auto rounded-lg border border-border/70 bg-card/70 px-3 py-2 text-xs sm:text-sm">
+            <ol className="flex min-w-max items-center gap-1 text-muted-foreground">
+              {breadcrumbs.map((item, index) => {
+                const isLast = index === breadcrumbs.length - 1;
+                return (
+                  <li key={item.to} className="flex items-center gap-1">
+                    {isLast ? (
+                      <span className="font-medium text-foreground">{item.label}</span>
+                    ) : (
+                      <Link to={item.to} className="hover:text-foreground">{item.label}</Link>
+                    )}
+                    {!isLast ? <ChevronRight className="size-3" /> : null}
+                  </li>
+                );
+              })}
+            </ol>
+          </nav>
+        ) : null}
+
         <Outlet />
       </main>
 
@@ -143,6 +216,50 @@ export function AppLayout() {
           </div>
         </div>
       </footer>
+
+      <div className="fixed bottom-4 right-4 z-40 flex flex-col gap-2 sm:bottom-6 sm:right-6">
+        <Button
+          type="button"
+          variant="secondary"
+          className="shadow-md"
+          onClick={() => setPlannerOpen(true)}
+        >
+          <Sparkles className="size-4" /> Quick Planner
+        </Button>
+
+        {showTop ? (
+          <Button
+            type="button"
+            variant="default"
+            className="shadow-md"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
+            <ArrowUp className="size-4" /> Top
+          </Button>
+        ) : null}
+      </div>
+
+      {plannerOpen ? (
+        <div className="fixed inset-0 z-50 bg-black/45 p-4 sm:p-6" onClick={() => setPlannerOpen(false)}>
+          <aside
+            className="ml-auto h-full w-full max-w-md overflow-y-auto rounded-2xl border border-border bg-background p-5 shadow-xl"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="mb-4 flex items-center justify-between">
+              <h2 className="text-xl font-semibold">Quick Planner</h2>
+              <Button type="button" variant="ghost" onClick={() => setPlannerOpen(false)}><X className="size-4" /></Button>
+            </div>
+            <div className="space-y-3">
+              <Input placeholder="Where do you want to go?" />
+              <Input placeholder="Departure month" />
+              <Input placeholder="Travelers" />
+              <Input placeholder="Budget range" />
+              <Textarea placeholder="Trip goals and preferences" />
+              <Button className="w-full">Generate plan</Button>
+            </div>
+          </aside>
+        </div>
+      ) : null}
     </div>
   );
 }
