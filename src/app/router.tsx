@@ -1,22 +1,22 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import { AppLayout } from "@/app/AppLayout";
-import { HomePage } from "@/pages/HomePage";
-import { AboutPage } from "@/pages/AboutPage";
-import { BookingPage } from "@/pages/BookingPage";
-import { ContactPage } from "@/pages/ContactPage";
-import { DestinationDetailsPage } from "@/pages/DestinationDetailsPage";
-import { DestinationsPage } from "@/pages/DestinationsPage";
-import { BlogDetailsPage } from "@/pages/BlogDetailsPage";
-import { BlogPage } from "@/pages/BlogPage";
-import { FaqPage } from "@/pages/FaqPage";
-import { GalleryPage } from "@/pages/GalleryPage";
-import { NotFoundPage } from "@/pages/NotFoundPage";
-import { PrivacyPage } from "@/pages/PrivacyPage";
-import { StarterPage } from "@/pages/StarterPage";
-import { TermsPage } from "@/pages/TermsPage";
-import { TestimonialsPage } from "@/pages/TestimonialsPage";
-import { TourDetailsPage } from "@/pages/TourDetailsPage";
-import { ToursPage } from "@/pages/ToursPage";
+import { HomePage } from "@/pages/home";
+import { AboutPage } from "@/pages/about";
+import { BookingPage } from "@/pages/booking";
+import { ContactPage } from "@/pages/contact";
+import { DestinationDetailsPage } from "@/pages/destination-details";
+import { DestinationsPage } from "@/pages/destinations";
+import { BlogDetailsPage } from "@/pages/blog-details";
+import { BlogPage } from "@/pages/blog";
+import { FaqPage } from "@/pages/faq";
+import { GalleryPage } from "@/pages/gallery";
+import { NotFoundPage } from "@/pages/not-found";
+import { PrivacyPage } from "@/pages/privacy";
+import { StarterPage } from "@/pages/starter-page";
+import { TermsPage } from "@/pages/terms";
+import { TestimonialsPage } from "@/pages/testimonials";
+import { TourDetailsPage } from "@/pages/tour-details";
+import { ToursPage } from "@/pages/tours";
 
 export const router = createBrowserRouter([
   {
