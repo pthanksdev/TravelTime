@@ -1,7 +1,10 @@
-﻿import { Clock4, MoveRight } from "lucide-react";
+﻿import { Clock4, MoveRight, Newspaper, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { PageHero } from "@/components/page/PageHero";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 
 const posts = [
   {
@@ -35,6 +38,21 @@ export function BlogPage() {
         imageAlt="Travel blog"
       />
 
+      <section className="rounded-2xl border bg-card p-4 sm:p-6">
+        <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+          <h2 className="text-xl font-semibold">Featured insight</h2>
+          <Badge variant="secondary"><Sparkles className="mr-1 inline size-3" />Editor pick</Badge>
+        </div>
+        <div className="grid gap-4 md:grid-cols-[1.1fr_0.9fr]">
+          <img src="/assets/img/blog/blog-post-6.webp" alt="Featured blog" className="h-56 w-full rounded-xl object-cover sm:h-72" loading="lazy" />
+          <div className="space-y-3 text-sm text-muted-foreground">
+            <p className="text-base font-medium text-foreground">Why smart routes beat aggressive itineraries</p>
+            <p>Trips fail when transfer costs are ignored. Better plans balance movement, rest, and flexibility windows.</p>
+            <Link to="/blog-details" className="inline-flex items-center gap-1 text-primary">Read article <MoveRight className="size-4" /></Link>
+          </div>
+        </div>
+      </section>
+
       <section className="grid gap-4 md:grid-cols-3">
         {posts.map((post) => (
           <Card key={post.title} className="overflow-hidden">
@@ -50,7 +68,19 @@ export function BlogPage() {
           </Card>
         ))}
       </section>
+
+      <section className="rounded-2xl border bg-card p-4 sm:p-6">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h3 className="text-xl font-semibold">Get monthly travel intelligence</h3>
+            <p className="text-sm text-muted-foreground">Research-backed route advice and destination updates.</p>
+          </div>
+          <div className="flex flex-col gap-2 sm:flex-row">
+            <Input placeholder="Email address" />
+            <Button><Newspaper className="mr-1 size-4" />Subscribe</Button>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
-

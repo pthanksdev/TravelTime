@@ -1,5 +1,6 @@
-﻿import { CalendarDays, CreditCard, Users } from "lucide-react";
+﻿import { CalendarDays, CreditCard, ShieldCheck, Users } from "lucide-react";
 import { PageHero } from "@/components/page/PageHero";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -22,6 +23,16 @@ export function BookingPage() {
         <Card><CardContent className="pt-6 text-sm"><CreditCard className="mb-2 size-5 text-primary" />Transparent payment flow</CardContent></Card>
       </section>
 
+      <section className="rounded-2xl border bg-card p-4 sm:p-6">
+        <h2 className="mb-3 text-xl font-semibold">Booking process</h2>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 text-sm">
+          <div className="rounded-lg border p-3"><Badge>1</Badge><p className="mt-2">Submit trip request</p></div>
+          <div className="rounded-lg border p-3"><Badge>2</Badge><p className="mt-2">Receive route proposal</p></div>
+          <div className="rounded-lg border p-3"><Badge>3</Badge><p className="mt-2">Confirm inclusions</p></div>
+          <div className="rounded-lg border p-3"><Badge>4</Badge><p className="mt-2">Secure booking</p></div>
+        </div>
+      </section>
+
       <section className="grid gap-4 lg:grid-cols-2">
         <img src="/assets/img/travel/misc-11.webp" alt="Travel booking" className="h-56 w-full rounded-2xl border object-cover sm:h-72 lg:h-full" loading="lazy" />
         <Card>
@@ -38,7 +49,10 @@ export function BookingPage() {
           </CardContent>
         </Card>
       </section>
+
+      <section className="rounded-2xl border bg-card p-4 sm:p-6 text-sm text-muted-foreground">
+        <p className="flex items-center gap-2"><ShieldCheck className="size-4 text-primary" /> Secure handling of booking details and transparent terms before payment.</p>
+      </section>
     </div>
   );
 }
-
